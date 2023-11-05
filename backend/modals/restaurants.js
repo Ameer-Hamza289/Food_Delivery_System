@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const restaurantSchema = new mongoose.Schema({
+
   name: { type: String, required: true },
   address:{
     type:String,
@@ -14,7 +15,7 @@ const restaurantSchema = new mongoose.Schema({
 type:String
   },
   delivery:{
-type:String
+type:Boolean
   },
 
 });
