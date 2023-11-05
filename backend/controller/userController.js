@@ -4,18 +4,15 @@ const jwt = require('jsonwebtoken');
 
 const secretKey = 'qwertyuiop'; 
 
-// Signup controller method
 const signup = async (req, res) => {
     try {
-      const { username, email, password, role } = req.body;
+      const {first_name,last_name, username, email, password, role, address, cnic, d_o_b, gender, marital_status, phone_no,  sales_per_month,joining_date  } = req.body;
   
-      // Check if the user already exists
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res.status(400).json({ message: 'User already exists' });
       }
   
-      // Ensure the specified role is valid (e.g., 'Admin', 'Buyer', 'Seller')
       if (!['Admin', 'Buyer', 'Seller'].includes(role)) {
         return res.status(400).json({ message: 'Invalid role' });
       }
@@ -24,7 +21,7 @@ const signup = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
   
       // Create a new user with the specified role
-      const user = new User({ username, email, password: hashedPassword, role });
+      const user = new User({first_name,last_name, username, email, password: hashedPassword, role, address, cnic, d_o_b, gender, marital_status, phone_no,  sales_per_month,joining_date  });
   
       await user.save();
   
@@ -41,7 +38,7 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
       const { email, password } = req.body;
-      console.log(req.body,"body");
+      // console.log(req.body,"body");
   
       // Check if the user exists
       const user = await User.findOne({ email });
@@ -69,8 +66,38 @@ const login = async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   };
+
+
+const getUserProfile = async (req, res) => {
+  try {
+    const user = req.user; 
+
+   
+    res.status(200).json({
+      first_name:user.first_name,
+      last_name:user.last_name,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      address:user.address,
+      cnic:user.cnic,
+      d_o_b:user.d_o_b,
+      gender:user.gender,
+      marital_status:user.marital_status,
+      phone_no:user.phone_no,
+      sales_per_month:user.sales_per_month,
+      joining_date:user.joining_date
+      
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
   
 
 module.exports = {
-    login,signup
+    login,signup, getUserProfile
   };

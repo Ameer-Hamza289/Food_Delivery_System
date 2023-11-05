@@ -1,4 +1,4 @@
-const Transaction = require('../models/transaction');
+const Transaction = require('../modals/transaction');
 
 const performTransaction = async (req, res) => {
   try {

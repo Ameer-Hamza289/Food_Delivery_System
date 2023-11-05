@@ -51,7 +51,8 @@ const userSchema = new mongoose.Schema({
     type:String
   },
   phone_no:{
-    type:String
+    type:String,
+    required:true
   },
   sales_per_month: {
     type: Number,

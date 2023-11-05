@@ -1,4 +1,4 @@
-const Order = require('../models/order');
+const Order = require('../modals/order');
 
 // Place a new order
 const placeOrder = async (req, res) => {

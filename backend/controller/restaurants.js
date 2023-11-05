@@ -1,4 +1,4 @@
-const Restaurant = require('../models/restaurant');
+const Restaurant = require('../modals/restaurants');
 
 // Create a new Restaurant
 const createRestaurant = async (req, res) => {
@@ -70,4 +70,5 @@ module.exports = {
   getAllRestaurants,
   updateRestaurant,
   deleteRestaurant,
+  getRestaurantById
 };

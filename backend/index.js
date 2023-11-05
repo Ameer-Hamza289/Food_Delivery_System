@@ -20,4 +20,19 @@ mongoose.connect(process.env.URI)
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+const restaurantRoutes=require('./routes/restaurantRoutes')
+app.use('/restaurants',restaurantRoutes)
+
+const foodItemsRoutes=require('./routes/foodItemsRoutes')
+app.use('/food-items',foodItemsRoutes)
+
+const orderRoutes=require('./routes/orderRoutes')
+app.use('/order',orderRoutes)
+
+const transactionRoutes=require('./routes/transactionRoutes')
+app.use('/transaction',transactionRoutes)
+
+const itemRoutes=require('./routes/itemsRoutes')
+app.use('/items',itemRoutes)
+
 app.listen(Port,()=>console.log(`Server is listening on port ${Port}`))
